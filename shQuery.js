@@ -20,7 +20,6 @@ var $ = (function(){
             this.addClass(className);
         }
     };
-
     function factory(id) {
         return new $(id);
     }
