@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body ng-controller="MainCtrl">
+<form ng-submit="add(person)">
+    <input ng-model="person.name">
+</form>
+
+<p>{{txt}}</p>
+<button ng-click="add(person)">추가</button>
+<button ng-click="alert(txt)">경고</button>
+<p>{{friends}}</p>
+<ul>
+    <li ng-repeat="friend in friends track by $index">
+        <span>{{$index + one()}}</span> {{friend.name}} <button>삭제</button>
+    </li>
+</ul>
+
+
+<script src="angular.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
