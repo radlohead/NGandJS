@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+    <div class="container">
+        <form ng-submit="add(a)">
+            <input type="text" ng-model="a.txt">
+        </form>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <p>등록된 개수 {{bookmarks.length}}</p>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-repeat="bookmark in bookmarks track by $index">
+                        <a href="{{bookmark.href}}">{{bookmark.href}}</a>
+                        <span class="pull-right">
+                            <button class="btn btn-danger btn-xs"
+                                    ng-click="delete($index)">삭제</button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
