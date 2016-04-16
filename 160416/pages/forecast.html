@@ -1,8 +1,18 @@
-<h2>날씨 결과</h2>
-<div>
+<h2>{{city}} 의 날씨 결과</h2>
+<div ng-repeat="w in weatherResult.list">
     <div class="row">
         <div class="com-md-12">
-
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        {{convertToDate(w.dt)
+                        | date : 'yyyy-MM-dd' }}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p>{{convertToCelsius(w.temp.day)}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
