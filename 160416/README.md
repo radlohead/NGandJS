@@ -2,4 +2,4 @@
 
 ## scope : &
 
-## $http
+## $resource
