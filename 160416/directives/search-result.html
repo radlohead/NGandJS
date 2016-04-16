@@ -1,0 +1,16 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <!--<div class="panel-title">
+            {{convertToDate(w.dt)
+            | date : 'yyyy-MM-dd' }}
+        </div>-->
+        <div class="panel-title">
+            {{convertToDateInDirective({date :weatherData.dt})
+            | date : dateFormat}}
+        </div>
+    </div>
+    <div class="panel-body">
+        <p>{{convertToCelsius(w.temp.day)}}</p>
+        <small ng-transclude></small>
+    </div>
+</div>
