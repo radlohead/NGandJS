@@ -10,9 +10,26 @@ angular.module('weatherApp', ['ngRoute', 'ngResource'])
                 templateUrl : 'pages/forecast.html',
                 controller : 'ForecastCtrl'
             })
+            .when('/forecast/:cnt', {
+                templateUrl : 'pages/forecast.html',
+                controller : 'ForecastCtrl'
+            })
     })
     .service('CityService', function(){
         this.city = 'Seoul';
+    })
+    .directive('searchResult', function(){
+        return {
+            replace : true,
+            restrict : 'E',
+            transclude : true,
+            templateUrl:'directives/search-result.html',
+            scope : {
+                weatherData : '=',
+                convertToDateInDirective : '&',
+                dateFormat : '@'
+            }
+        }
     })
     .controller('HomeCtrl', function($scope, CityService) {
         $scope.city = CityService.city;
@@ -22,8 +39,9 @@ angular.module('weatherApp', ['ngRoute', 'ngResource'])
         })
 
     })
-    .controller('ForecastCtrl', function($scope, CityService, $resource) {
+    .controller('ForecastCtrl', function($scope, CityService, $resource, $routeParams) {
         $scope.city = CityService.city;
+        $scope.cnt = $routeParams.cnt || '2';
         $scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast/daily',{
             callback : 'JSON_CALLBACK'
         },{
@@ -31,8 +49,10 @@ angular.module('weatherApp', ['ngRoute', 'ngResource'])
                 method : 'JSONP'
             }
         });
-        $scope.weatherResult = $scope.weatherAPI.get({q:$scope.city, cnt: 2});
-        console.log($scope.weatherResult)
+        var data = {q:$scope.city, cnt: $scope.cnt};
+        console.log(data);
+        $scope.weatherResult = $scope.weatherAPI.get(data);
+
         $scope.convertToDate = function(dt) {
             return new Date(dt * 1000);
         };
