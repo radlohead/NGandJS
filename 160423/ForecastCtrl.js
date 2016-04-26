@@ -31,7 +31,7 @@ angular.module.module('weatherApp', [])
             $scope.data = [
                 [23,51,23,123,54,123,54]
             ];
-            $scope.labels = ['1','2','3','4','금','토','일'];
+            $scope.labels = ['1','2','3','4','5','6','7'];
 
             $scope.data[0] = weather.list.map(function(v){
                 return $scope.convertToCelsius(v.temp.day);
