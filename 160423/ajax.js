@@ -13,7 +13,6 @@ function ajax(path) {
         }
     });
 }
-
 //실행코드
 ajax('package.json').then(function(result){
     console.log(result);
